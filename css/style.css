@@ -799,7 +799,7 @@
 
 /*** testimonial Start ***/
 .testimonial {
-    background: linear-gradient(rgba(21, 185, 217, 0.9), rgba(21, 185, 217, 0.9)), url(../img/carousel-1.jpg);
+    background: linear-gradient(rgb(4,213,182), rgb(4,213,182)), url(../img/bg/photo-mm.jpg);
     background-position: center center;
     background-repeat: no-repeat;
     background-size: cover;
