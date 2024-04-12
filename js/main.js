@@ -73,6 +73,9 @@
         $('#videoModal').on('hide.bs.modal', function (e) {
             $("#video").attr('src', $videoSrc);
         })
+
+        // hide top bar & show on page scroll
+        $('#nav1').style.css('display', 'none');
     });
 
 
@@ -109,21 +112,86 @@
         }
     });
 
-    
-    
-   // Back to top button
-   $(window).scroll(function () {
-    if ($(this).scrollTop() > 300) {
-        $('.back-to-top').fadeIn('slow');
-    } else {
-        $('.back-to-top').fadeOut('slow');
-    }
+    // show/hide divisions navigation
+    $(window).scroll(function() {
+        const nav1 = document.getElementById('nav1');
+        const nav2 = document.getElementById('nav2');
+
+        if (window.scrollY > nav2.offsetHeight) {
+            nav1.classList.add('show'); // Add 'show' class when scrolled past nav2 height
+        } else {
+            nav1.classList.remove('show'); // Remove 'show' class on scroll up
+        }
     });
+
+    // Back to top button
+    $(window).scroll(function () {
+        if ($(this).scrollTop() > 300) {
+            $('.back-to-top').fadeIn('slow');
+        } else {
+            $('.back-to-top').fadeOut('slow');
+        }
+    });
+
+    // click to go top of page
     $('.back-to-top').click(function () {
         $('html, body').animate({scrollTop: 0}, 1500, 'easeInOutExpo');
         return false;
     });
 
+    // clients logo
+    $('.client-logo').owlCarousel({
+        loop: true,
+        margin: 0,
+        dots: false,
+        nav: false,
+        autoplay: true,
+        navText: ["<i class='icofont icofont-thin-left'></i>", "<i class='icofont icofont-thin-right'></i>"],
+        responsive: {
+            0: {
+                items: 3
+            },
+            300: {
+                items: 3
+            },
+            600: {
+                items: 4
+            },
+            1000: {
+                items: 6
+            }
+        }
+    });
+
+    // divisions slider
+    $(".divisions-carousel").owlCarousel({
+        autoplay: true,
+        loop: true,
+        margin: 15,
+        dots: false,
+        slideTransition: "linear",
+        autoplayTimeout: 4500,
+        autoplayHoverPause: true,
+        autoplaySpeed: 4500,
+        responsive: {
+          0: {
+            items: 2
+          },
+          500: {
+            items: 3
+          },
+          600: {
+            items: 4
+          },
+          800: {
+            items: 4
+          },
+          1200: {
+            items: 4
+          }
+        }
+    });
+      
 
 })(jQuery);
 
