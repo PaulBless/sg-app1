@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>Gia Phu Group trains PHP, Ajax, Html</title>
+        <meta charset="utf-8">
+        <style>
+            input[type=text], select, textarea {
+                width: 100%;
+                padding: 12px;
+                border: 1px solid #ccc;
+                border-radius: 4px;
+                box-sizing: border-box;
+                margin-top: 6px;
+                resize: vertical;
+            }
+
+            input[type=submit] {
+                background-color: #4CAF50;
+                color: white;
+                padding: 12px 20px;
+                border: none;
+                border-radius: 4px;
+                cursor: pointer;
+            }
+
+            label {
+                margin-top: 16px;
+                display: block;
+            }
+
+            input[type=submit]:hover {
+                background-color: #45a049;
+            }
+
+            textarea {
+                height:200px;
+            }
+            .submit {
+                margin-top: 10px;
+            }
+            .container {
+                border-radius: 5px;
+                background-color: #f2f2f2;
+                padding: 20px;
+                width: 1170px;
+                margin: 0 auto;
+            }
+            .required-label {
+                font-size: 13px;
+                color: red;
+                margin-top: 5px;
+            }
+            .message {
+                color: green;
+                margin-top: 15px;
+            }
+            .message .error {
+                color: red;
+            }
+            .loading {
+                width: 16px;
+                padding-left: 15px;
+                display: none;
+            }
+            #contact-form .disabled {
+                color: white;
+                background: gray;
+            }
+            @media(max-width: 1169px) {
+                .container {
+                    width: 80%;
+                }
+            }
+        </style>
+        <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+    </head>
+    <body>
+        <div class="container">
+            <h1>Contact Form</h1>
+            <form method="POST" id="contact-form" enctype="multipart/form-data" onsubmit="return submitContactContent();">
+                <label for="fname">First Name</label>
+                <input type="text" id="fname" name="firstname" placeholder="Your name.." class="field-required">
+
+                <label for="lname">Last Name</label>
+                <input type="text" id="lname" name="lastname" placeholder="Your last name.." class="field-required">
+
+                <label for="country">Country</label>
+                <select id="country" name="country" class="field-required">
+                    <option value="">---</option>
+                    <option value="australia">Australia</option>
+                    <option value="canada">Canada</option>
+                    <option value="usa">USA</option>
+                    <option value="vn">Vietnam</option>
+                </select>
+
+                <label for="ypicture">Your picture</label>
+                <input type="file" id="ypicture" name="ypicture" placeholder="Your picture.." class="field-required image-file-validation">
+
+                <label for="subject">Subject</label>
+                <textarea id="subject" name="subject" placeholder="Write something.." class="field-required"></textarea>
+
+                <input type="submit" value="Submit" name="submit" class="submit" id="submit">
+                <img src="img/loading.gif" class="loading" />
+                <div class="message"></div>
+            </form>
+        </div>
+    </body>
+    <script>
+        function validateForm(formId) {
+            //Messages
+            var warnings = {
+                text: 'This text field is required',
+                textarea: 'This textarea is required',
+                select: 'Select an option',
+                file: 'Select a file',
+                image: 'Image invalid (Accepting format .gif .png .jpg .jpeg)'
+            };
+            //Init
+            var validate = true;
+            //Remove old warnings
+            $("#" + formId + " .required-label").remove();
+            $("#" + formId + " .field-required").each(function () {
+                var myself = $(this);
+                if (myself.prop("type").toLowerCase() === 'file' && myself.val() === '') {
+                    myself.after('<div class="required-label">' + warnings.file + '</div>');
+                    validate = false;
+                }
+                if (myself.prop("type").toLowerCase() === 'text' && myself.val() === '') {
+                    myself.after('<div class="required-label">' + warnings.text + '</div>');
+                    validate = false;
+                }
+                if (myself.prop("type").toLowerCase() === 'textarea' && myself.val() === '') {
+                    myself.after('<div class="required-label">' + warnings.textarea + '</div>');
+                    validate = false;
+                }
+                if (myself.prop("type").toLowerCase() === 'select-one' && myself.val() === '') {
+                    myself.after('<div class="required-label">' + warnings.select + '</div>');
+                    validate = false;
+                }
+            });
+            $("#" + formId + " .image-file-validation").each(function () {
+                var myself = $(this);
+                if (myself.val() != '') {
+                    var ext = myself.val().split('.').pop().toLowerCase();
+                    if ($.inArray(ext, ['gif', 'png', 'jpg', 'jpeg']) == -1) {
+                        myself.after('<div class="required-label">' + warnings.image + '</div>');
+                        validate = false;
+                    }
+                }
+            });
+            return validate;
+        }
+        function submitContactContent() {
+            $('#submit').addClass('disabled');
+            $('.message').hide();
+            $('#submit').attr('disabled', 'disabled');
+            if (validateForm('contact-form')) {
+                $('.loading').show();
+                var formData = new FormData($('#contact-form')[0]);
+                $.ajax({
+                    url: 'apis/txt.php',
+                    data: formData,
+                    processData: false,
+                    contentType: false,
+                    type: 'POST',
+                    dataType: 'json',
+                    success: function (response) {
+                        $('.message').show();
+                        if (response.flag == '1') {
+                            $('.message').text(response.massage);
+                        } else {
+                            $('.message').html('<span class="error">'+response.massage+'</span>');
+                        }
+                        $('.loading').hide();
+                    }
+                });
+            } else {
+                console.log("The form is invalid !");
+            }
+            $('#submit').removeClass('disabled');
+            $('#submit').removeAttr('disabled');
+            return false;
+        }
+    </script>
+</html>

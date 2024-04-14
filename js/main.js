@@ -31,7 +31,7 @@
         animateOut: 'slideOutDown',
         items: 1,
         autoplay: true,
-        smartSpeed: 1000,
+        smartSpeed: 4000,
         dots: false,
         loop: true,
         nav : true,
@@ -192,6 +192,15 @@
         }
     });
       
+    // contact form submit
+    $("#contactForm").submit(function(e) {
+
+    });
+
+    // appointment booking form submit
+    $("#appointmentForm").submit(function(e) {
+        
+    });
 
 })(jQuery);
 

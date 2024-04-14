@@ -1,3 +1,12 @@
+/* 
+    Author: Paul Eshun 
+    Email: eshunbless1@gmail.com
+    Telephone: +233241565520
+    Twitter: https://twitter.com/@eshunbless1
+    LinkedIn: https://www.linkedin.com/in/paul-eshun
+    Website: https://iampaul.netlify.app/
+*/
+
 /* Google Fonts */
 /* Inter */
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap');
@@ -43,10 +52,6 @@
     z-index: 10; /* Ensure nav1 is above other content */
 }
 
-/*  */
-.owl-carousel .owl-nav [class*="owl-"]:hover {
-    cursor: pointer; /* Change cursor to pointer on hover */
-  }
 
 /* About Page */
 .area-padding-2 {
@@ -57,12 +62,12 @@
 }
 
 .area-padding {
-    padding: 100px 0px;
+    padding: 100px 250px;
 }
 
 /* Divisions Logo Slider */
 .divisions {
-    padding: 200px 0;
+    padding: 0px;
   }
   .box {
     display: grid;
@@ -80,6 +85,7 @@
   }
   .box:hover {
     transform: scale(1.2);
+    cursor: pointer;
   }
   /* end */
 
@@ -91,11 +97,12 @@
     background: url('../img/bg/sg-welcome.jpg');
     background-repeat: no-repeat;
     background-size: cover;
-    background-position: top center;
+    background-position: center center;
     background-attachment: scroll;
     z-index: 1;
-    position: relative;
+    /* position: relative; */
     object-fit: fill;
+    /* height: 100%; */
 }
 .self-area:after{
     position:absolute;
@@ -117,15 +124,17 @@
     color: #666;
 }
 /*----------------------------------------*/
-
-
+.about-feature-area {
+    padding: 30px 30px;
+}
 .mission-about {
-    border: 1px solid #ccc;
+    border: 1px solid var(--bs-dark);
     padding: 20px 35px;
     display: block;
     position: relative;
     text-align: center;
-    margin-bottom: 30px;
+    margin-bottom: 40px;
+    height: 280px;
 }
 .mission-icon {
     display: block;
@@ -134,14 +143,14 @@
     font-size: 40px;
     width: 80px;
     height: 80px;
-    border: 1px solid #ccc;
+    border: 1px solid var(--bg-dark);
     display: inline-block;
     text-align: center;
     line-height: 80px;
     position: relative;
     top: -60px;
     background: #fff;
-    color: #E6922E;
+    color: var(--bs-primary);
     border-radius: 50%;
     transition: 0.4s;
 }
@@ -152,8 +161,9 @@
     font-size: 16px;
 }
 .mission-about:hover .mission-icon i {
-    border: 1px solid #E6922E;
-    background: #E6922E;
+    /* border: 1px solid #E6922E; */
+    border: 1px solid var(--bs-primary);
+    background: var(--bs-primary);
     color: #fff;
     transition: 0.4s;
 }
@@ -423,6 +433,8 @@
     background: var(--bs-light) !important;
     transition: .5s;
     opacity: 1;
+    border-radius: 0px !important;
+    border-left: 3px solid var(--bs-info);
 }
 
 @media (max-width: 991.98px) {
@@ -707,6 +719,9 @@
     border-radius: 10px;
 }
 
+.about .about-img .ai{
+    border-radius: 50px 0px 50px 0px;
+}
 .about .about-img .about-img-inner {
     position: absolute;
     left: 0; 
@@ -1406,7 +1421,6 @@
 }
 
 .footer .footer-item a:hover {
-    letter-spacing: 1px;
     color: var(--bs-info);
 }
 
