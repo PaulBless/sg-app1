@@ -52,6 +52,9 @@
     z-index: 10; /* Ensure nav1 is above other content */
 }
 
+#navbarCollapse{
+
+}
 
 /* About Page */
 .area-padding-2 {

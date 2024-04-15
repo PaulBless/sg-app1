@@ -75,7 +75,7 @@
         })
 
         // hide top bar & show on page scroll
-        $('#nav1').style.css('display', 'none');
+        // $('#nav1').css.style('display', 'none');
     });
 
 
@@ -193,7 +193,7 @@
     });
       
     // contact form submit
-    $("#contactForm").submit(function(e) {
+    $("#contactForm123").submit(function(e) {
         e.preventDefault();
         var formData = new FormData(this);
         $('.submit-btn').text('please wait...').attr('disabled', 'disabled');
@@ -204,6 +204,27 @@
             // data:'userName='+$("#userName").val()+'&userEmail='+$("#userEmail").val()+'&subject='+$("#subject").val()+'&content='+$(content).val(),
             type: "POST",
             data: formData,
+            success:function(data){
+                $("#mail-status").html(data);
+                $('.submit-btn').text('Send Message').attr('disabled', false);
+            },
+            error:function (){
+                $('.submit-btn').text('Send Message').attr('disabled', false);
+            }
+            
+        });
+    });
+
+    $("#contactForm").submit(function(e) {
+        e.preventDefault();
+        var formData = new FormData(this);
+        $('.submit-btn').text('please wait...').attr('disabled', 'disabled');
+
+        //
+        jQuery.ajax({
+            url: "apis/contactus.php",
+            data:'userName='+$("#contact-name").val()+'&userEmail='+$("#contact-email").val()+'&contactPhone='+$("contact-phone").val()+'&subject='+$("#subject").val()+'&content='+$('#message').val(),
+            type: "POST",
             success:function(data){
                 $("#mail-status").html(data);
                 $('.submit-btn').text('Send Message').attr('disabled', false);
@@ -281,5 +302,26 @@
     function validateTPool() {
         
     }
+
+    // check only numbers on keypress event
+    function isNumberKey(evt)
+    {
+        var charCode = (evt.which) ? evt.which : evt.keyCode;
+        if (charCode != 46 && charCode > 31 
+        && (charCode < 48 || charCode > 57))
+        return false;
+        return true;
+    }  
+
+    // function to check inputs
+    function acceptLetters(e)
+    {
+        // allow letters and whitespaces only.
+        var inputValue = event.which;
+        if(!(inputValue >= 65 && inputValue <= 123) && (inputValue != 32 && inputValue != 0)) { 
+            event.preventDefault(); 
+        }
+    }
+    
 })(jQuery);
 
