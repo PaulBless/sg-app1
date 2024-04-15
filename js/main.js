@@ -194,13 +194,92 @@
       
     // contact form submit
     $("#contactForm").submit(function(e) {
+        e.preventDefault();
+        var formData = new FormData(this);
+        $('.submit-btn').text('please wait...').attr('disabled', 'disabled');
 
+        //
+        jQuery.ajax({
+            url: "apis/contact_form.php",
+            // data:'userName='+$("#userName").val()+'&userEmail='+$("#userEmail").val()+'&subject='+$("#subject").val()+'&content='+$(content).val(),
+            type: "POST",
+            data: formData,
+            success:function(data){
+                $("#mail-status").html(data);
+                $('.submit-btn').text('Send Message').attr('disabled', false);
+            },
+            error:function (){
+                $('.submit-btn').text('Send Message').attr('disabled', false);
+            }
+            
+        });
     });
 
     // appointment booking form submit
     $("#appointmentForm").submit(function(e) {
-        
+        let formData = $(this).serialize();
+
     });
 
+    // talent pool form submit using ajax
+    $('#talentPoolForm').submit(function(e) {
+        e.preventDefault();
+        if(valid) {
+            $.ajax({
+            url: "contact_mail.php",
+            type: "POST",
+            data:  new FormData(this),
+            contentType: false,
+            cache: false,
+            processData:false,
+            success: function(data){
+            $("#mail-status").html(data);
+            $('#loader-icon').hide();
+            },
+            error: function(){} 	        
+            
+            });
+        }
+    });
+
+    
+    function validateContact() {
+        var valid = true;	
+        $(".demoInputBox").css('background-color','');
+        $(".info").html('');
+        
+        if(!$("#userName").val()) {
+            $("#userName-info").html("(required)");
+            $("#userName").css('background-color','#FFFFDF');
+            valid = false;
+        }
+        if(!$("#userEmail").val()) {
+            $("#userEmail-info").html("(required)");
+            $("#userEmail").css('background-color','#FFFFDF');
+            valid = false;
+        }
+        if(!$("#userEmail").val().match(/^([\w-\.]+@([\w-]+\.)+[\w-]{2,4})?$/)) {
+            $("#userEmail-info").html("(invalid)");
+            $("#userEmail").css('background-color','#FFFFDF');
+            valid = false;
+        }
+        if(!$("#subject").val()) {
+            $("#subject-info").html("(required)");
+            $("#subject").css('background-color','#FFFFDF');
+            valid = false;
+        }
+        if(!$("#content").val()) {
+            $("#content-info").html("(required)");
+            $("#content").css('background-color','#FFFFDF');
+            valid = false;
+        }
+        
+        return valid;
+    }
+
+    
+    function validateTPool() {
+        
+    }
 })(jQuery);
 

@@ -1041,6 +1041,15 @@
     font-weight: 600;
 }
 
+.team-section .card {
+    border: none;
+    border-radius: 0;
+}
+.team-section .card .td {
+   /* background: #1FC157;
+   color: var(--bs-dark);
+   border-radius: 20px; */
+}
 /*** Team End ***/
 
 
