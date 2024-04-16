@@ -200,7 +200,7 @@
 
         //
         jQuery.ajax({
-            url: "apis/contact_form.php",
+            url: "../apis/contact_form.php",
             // data:'userName='+$("#userName").val()+'&userEmail='+$("#userEmail").val()+'&subject='+$("#subject").val()+'&content='+$(content).val(),
             type: "POST",
             data: formData,
@@ -222,10 +222,11 @@
 
         //
         jQuery.ajax({
-            url: "apis/contactus.php",
+            url: "../apis/contactus.php",
             data:'userName='+$("#contact-name").val()+'&userEmail='+$("#contact-email").val()+'&contactPhone='+$("contact-phone").val()+'&subject='+$("#subject").val()+'&content='+$('#message').val(),
             type: "POST",
             success:function(data){
+                console.log(data);
                 $("#mail-status").html(data);
                 $('.submit-btn').text('Send Message').attr('disabled', false);
             },
@@ -247,7 +248,7 @@
         e.preventDefault();
         if(valid) {
             $.ajax({
-            url: "contact_mail.php",
+            url: "../apis/contact_mail.php",
             type: "POST",
             data:  new FormData(this),
             contentType: false,
@@ -322,6 +323,6 @@
             event.preventDefault(); 
         }
     }
-    
+
 })(jQuery);
 
