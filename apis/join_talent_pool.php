@@ -29,7 +29,8 @@ $body = <<<EOT
     Location: {$_POST['location']}
     Motivation: {$_POST['motivation-letter']}
     EOT;;
-$attachmentPath = 'path/to/attachment/file.pdf'; // Replace with the path to cv file
+
+    $attachmentPath = 'path/to/attachment/file.pdf'; // Replace with the path to cv file
 
 // Create a new PHPMailer instance
 $mail = new PHPMailer(true);
