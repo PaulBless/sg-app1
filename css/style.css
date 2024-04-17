@@ -625,9 +625,41 @@
     width: 65%;
     
 }
-/* .header-carousel .header-carousel-item .carousel-caption:hover{
-    cursor: pointer;
-} */
+.header-carousel .header-carousel-item img {
+    -webkit-animation: float 6s ease-in-out infinite 10s;
+    animation: float 6s ease-in-out infinite 10s;
+
+    /* -webkit-animation-name: FadeInOut;
+    -webkit-animation-timing-function: ease-in-out;
+    -webkit-animation-iteration-count: infinite;
+    -webkit-animation-duration: 10s;
+    -webkit-animation-direction: alternate; */
+
+}
+
+/* animation */
+@keyframes FadeInOut {
+    0% {opacity:1;}
+    25% {opacity:.75;}
+    50% {opacity:.5;}
+    100% {opacity:0;}
+}
+
+@keyframes float {
+	0% {
+		box-shadow: 0 5px 15px 0px rgba(0,0,0,0.6);
+		transform: translatey(0px);
+	}
+	50% {
+		box-shadow: 0 25px 15px 0px rgba(0,0,0,0.2);
+		transform: translatey(-20px);
+	}
+	100% {
+		box-shadow: 0 5px 15px 0px rgba(0,0,0,0.6);
+		transform: translatey(0px);
+	}
+}
+
 /*** Carousel Hero Header End ***/
 
 
