@@ -215,8 +215,6 @@
             
         });
     });
-
-    $("#contactUs").submit(function(e) {
     
     // appointment booking form submit
     $("#appointmentForm").submit(function(e) {
