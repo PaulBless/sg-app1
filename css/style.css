@@ -748,7 +748,7 @@
 
 .service .service-item:hover .service-content .service-content-inner {
     position: relative;
-    color: var(--bs-white) !important;
+    color: var(--bs-dark) !important;
     z-index: 9;
 }
 .service .service-item:hover .service-content .service-content-inner h5 {
