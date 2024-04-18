@@ -216,28 +216,8 @@
         });
     });
 
-    $("#contactForm").submit(function(e) {
-        e.preventDefault();
-        var formData = new FormData(this);
-        $('.submit-btn').text('please wait...').attr('disabled', 'disabled');
-
-        //
-        jQuery.ajax({
-            url: "../apis/contactus.php",
-            data:'userName='+$("#contact-name").val()+'&userEmail='+$("#contact-email").val()+'&contactPhone='+$("contact-phone").val()+'&subject='+$("#subject").val()+'&content='+$('#message').val(),
-            type: "POST",
-            success:function(data){
-                console.log(data);
-                $("#mail-status").html(data);
-                $('.submit-btn').text('Send Message').attr('disabled', false);
-            },
-            error:function (){
-                $('.submit-btn').text('Send Message').attr('disabled', false);
-            }
-            
-        });
-    });
-
+    $("#contactUs").submit(function(e) {
+    
     // appointment booking form submit
     $("#appointmentForm").submit(function(e) {
         let formData = $(this).serialize();

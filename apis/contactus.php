@@ -20,7 +20,10 @@ $toEmail = "eshunbless1@gmail.com";
 $mailHeaders = "From: " . $_POST["contact-name"] . "<". $_POST["contact-email"] .">\r\n";
 
 if(mail($toEmail, $_POST["subject"], $body, $mailHeaders)) {
-    print "<p class='success'>Contact Mail Sent.</p>";
+    // print "<p class='text-success'>Contact Mail Sent.</p>";
+    echo json_encode(array('status' => 200, 'message' => 'Mail Sent Successfully'));
 } else {
-    print "<p class='Error'>Problem in Sending Mail.</p>";
+    // print "<p class='text-danger'>Problem in Sending Mail.</p>";
+    echo json_encode(array('status' => 200, 'message' => 'Mail Sending Error: ' . $mail->ErrorInfo));
+    // echo "Mailer Error: " . $mail->ErrorInfo;
 }
