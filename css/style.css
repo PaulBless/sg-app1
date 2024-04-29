@@ -103,8 +103,8 @@
     background-position: center center;
     background-attachment: scroll;
     z-index: 1;
-    /* position: relative; */
     object-fit: fill;
+    /* position: relative; */
     /* height: 100%; */
 }
 .self-area:after{
@@ -120,11 +120,26 @@
 .self-content {
     background: #fff;
     padding: 50px 30px 50px 50px;
-    border-radius: 4px;
+    border-radius: 20px;
 }
 .talk-text {
     font-size: 18px;
     color: #666;
+}
+@media (max-width: 576px) {
+    .self-area {
+        /* display: none;     */
+    }
+}
+@media (max-width: 767px) {
+    .sa-container {
+        width: 220px;
+    }
+    .self-content {
+        padding: 20px 20px 20px 20px;
+        float: left;
+        position: unset;
+    }
 }
 /*----------------------------------------*/
 .about-feature-area {
